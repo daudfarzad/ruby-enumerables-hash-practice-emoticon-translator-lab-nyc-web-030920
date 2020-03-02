@@ -1,7 +1,14 @@
-def get_english_meaning(file_path = './lib/emoticons.yml', japanese_emoticon)
-	 library = load_library(file_path)
-   if library["get_meaning"].include?(japanese_emoticon) 
-     library["get_meaning"][japanese_emoticon]
-   else
-     "Sorry, that emoticon was not found"
-   end
+require "yaml"
+
+def load_library(file_path)
+  emoticons = YAML.load_file(file_path)
+  
+  new_hash = {
+    'get_meaning' => {},
+    'get_emoticon' => {}
+  }
+
+  emoticons.each do |key,value|
+    new_hash['get_emoticon'][value[0]] = emoticons[key][1]
+    new_hash['get_meaning'][value[1]] = key
+end
