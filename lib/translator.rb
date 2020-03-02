@@ -1,5 +1,5 @@
 
-def
+def 
     library = YAML.load_file(file_path)
    result = {"get_meaning" => {}, "get_emoticon" => {}}
    library.each do |meaning, emoticons|
